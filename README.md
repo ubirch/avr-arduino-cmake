@@ -2,6 +2,8 @@
 
 A toolchain for compiling avr code and Arduino Sketches using CMake and CLion.
 
+See [ubirch-avr](https://github.com/ubirch/ubirch-avr) for an example where all variants are used.
+
 ### Prerequisits
 
 Install the toolchain:
