@@ -1,0 +1,4 @@
+# tell the build system what to build
+add_executable_avr(example example.c)
+# declare what dependencies this executable has
+target_link_libraries(example example-lib)

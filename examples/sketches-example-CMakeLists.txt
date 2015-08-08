@@ -1,0 +1,11 @@
+# tell the buold system your sketch name and the sources
+add_executable_avr(example-sketch example-sketch.cpp)
+
+# we require a number of arduino libraries for this
+# (they already depend on arduino-core, so we don't need it here)
+# install these libraries and either copy them or create a link in the 'external' directory
+target_link_libraries(example-sketch SoftwareSerial)
+
+# special external dependencies can be added like this and will be downloaded once (automatically)
+# arguments: <target> <name> <git url>
+target_sketch_library(example-sketch Adafruit_FONA_Library https://github.com/adafruit/Adafruit_FONA_Library)

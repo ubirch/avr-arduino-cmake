@@ -1,0 +1,5 @@
+# tell the build system what to build
+add_library(example-lib example-lib.c)
+# for libraries also add the directory to the include path
+target_include_directories(example-lib PUBLIC ${CMAKE_CURRENT_SOURCE_DIR})
+
