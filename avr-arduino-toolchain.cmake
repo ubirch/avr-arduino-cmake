@@ -61,6 +61,9 @@ add_definitions(-DMCU=${MCU})
 add_definitions(-DF_CPU=${F_CPU})
 add_definitions(-DBAUD=${BAUD})
 
+# add a reset command using avrdude
+add_custom_target(avr-reset COMMAND ${AVRDUDE} -c${PROGRAMMER} -p${MCU})
+
 # we need a little function to add multiple targets
 function(add_executable_avr NAME)
     add_executable(${NAME} ${ARGN})
