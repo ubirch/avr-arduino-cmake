@@ -61,9 +61,6 @@ add_definitions(-DMCU=${MCU})
 add_definitions(-DF_CPU=${F_CPU})
 add_definitions(-DBAUD=${BAUD})
 
-# add a reset command using avrdude
-add_custom_target(avr-reset COMMAND ${AVRDUDE} -c${PROGRAMMER} -p${MCU})
-
 # we need a little function to add multiple targets
 function(add_executable_avr NAME)
     add_executable(${NAME} ${ARGN})
@@ -79,6 +76,11 @@ function(add_executable_avr NAME)
             COMMAND ${AVRSIZE} --mcu=${MCU} -C --format=avr "${NAME}.elf"
             DEPENDS ${NAME})
     add_custom_target(${NAME}-strip ALL DEPENDS ${NAME}.hex)
+
+    # add a reset command using avrdude (only if it does not yet exist)
+    if (NOT TARGET avr-reset)
+        add_custom_target(avr-reset COMMAND ${AVRDUDE} -c${PROGRAMMER} -p${MCU})
+    endif ()
 
     if (PROGRAMMER STREQUAL "usbasp")
         set(AVRDUDE_ARGS -c${PROGRAMMER} -p${MCU} -Pusb)
