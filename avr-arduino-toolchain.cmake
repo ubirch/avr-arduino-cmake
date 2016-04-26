@@ -24,6 +24,7 @@ cmake_minimum_required(VERSION 3.0)
 # find compiler and toolchain programs
 find_program(AVRCPP avr-g++)
 find_program(AVRC avr-gcc)
+find_program(AVRAR avr-ar)
 find_program(AVRSTRIP avr-strip)
 find_program(OBJCOPY avr-objcopy)
 find_program(OBJDUMP avr-objdump)
